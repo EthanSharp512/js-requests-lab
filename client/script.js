@@ -83,14 +83,18 @@ const ohMy = () => {
     axios.get(`${baseURL}/animals`)
     .then((res) => {
         let animalsArr = res.data;
-        console.log(animalsArr);
+        for (let i = 0; i < animalsArr.length; i++) {
+            const newP = document.createElement('p'); 
+            newP.textContent = animalsArr[i];
+            document.querySelector('body').appendChild(newP);
+        }
     })
     .catch((err) => {
         console.log(err);
     })
 }
 
-document.getElementById('animals-button').addEventListener('click', ohMy)
+document.getElementById('animals-button').addEventListener('click', ohMy);
 
 
 // PROBLEM 6 
