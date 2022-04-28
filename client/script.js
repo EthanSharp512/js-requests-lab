@@ -146,7 +146,7 @@ document.querySelector('#repeat-button').addEventListener('click', repeatMyParam
 // CODE HERE
 
 const queryTest = () => {
-    axios.get(`${baseURL}/query-test/?name=john`)
+    axios.get(`${baseURL}/query-test/?name=john&name=billy&color=blue`)
     .then((res) => {
             console.log(res.data);
         })
