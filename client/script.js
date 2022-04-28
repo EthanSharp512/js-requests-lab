@@ -10,7 +10,7 @@
 */
 
 // CODE HERE
-
+const sayHelloButton = document.querySelector('#say-hello-button');
 
 // PROBLEM 2
 /*
@@ -21,6 +21,10 @@
 
 // CODE HERE
 
+sayHelloButton.addEventListener('mouseover', () => {
+    sayHelloButton.style.backgroundColor = 'black';
+    sayHelloButton.style.color = 'white';
+})
 
 // PROBLEM 3
 /*
@@ -32,7 +36,10 @@
 */
 
 // CODE HERE
-
+sayHelloButton.addEventListener('mouseout', () => {
+    sayHelloButton.style.backgroundColor = '#EFEFEF';
+    sayHelloButton.style.color = 'black';
+})
 
 // PROBLEM 4
 /*
@@ -53,7 +60,7 @@ const sayHello = () => {
 // DO NOT EDIT FUNCTION
 
 // CODE HERE
-
+sayHelloButton.addEventListener('click', sayHello);
 
 // PROBLEM 5 
 /*
@@ -66,8 +73,21 @@ const sayHello = () => {
     Handle the promise that's returned with a .then, which you should pass a callback function to. Inside the callback function, console.log the response's data (in the intermediate instructions we'll come back to this function and add HTML).
 */ 
 
+
+//INSTRUCTIONS FOR PROBLEM 9: Back in the ohMy function on Problem 5, replace the console log in the promise's callback with a for loop that loops over res.data. 
+// On each iteration of the loop, create a new p element. Set its textContent equal the string at the current index (i) and then append the new p element onto the document's body.
+
+let baseURL = 'http://localhost:3000'
+
 const ohMy = () => {
-    // YOUR CODE HERE
+    axios.get(`${baseURL}/animals`)
+    .then((res) => {
+        let animalsArr = res.data;
+        console.log(animalsArr);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 }
 
 document.getElementById('animals-button').addEventListener('click', ohMy)
@@ -87,9 +107,18 @@ document.getElementById('animals-button').addEventListener('click', ohMy)
 */
 
 const repeatMyParam = () => {
-    //YOUR CODE HERE
+    axios.get(`${baseURL}/repeat/string`)
+    .then((res) => {
+            document.querySelector('#repeat-text').textContent = res.data;
+            console.log(res.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
 }
 
+document.querySelector('#repeat-button').addEventListener('click', repeatMyParam);
 // PROBLEM 7
 /*
     Now that we have the response data, let's add it to our web page! 
@@ -112,7 +141,17 @@ const repeatMyParam = () => {
 
 // CODE HERE
 
+const queryTest = () => {
+    axios.get(`${baseURL}/query-test/?name=john`)
+    .then((res) => {
+            console.log(res.data);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
 
+document.querySelector('#query-button').addEventListener('click', queryTest);
 
 ////////////////
 //INTERMEDIATE//
