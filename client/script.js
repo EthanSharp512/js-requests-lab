@@ -207,3 +207,24 @@ document.querySelector('#query-button').addEventListener('click', queryTest);
 */
 
 // CODE HERE 
+
+function createFood() {
+
+    const foodInput = document.querySelector('#food-input').value;
+
+
+    let body = {
+        newFood: foodInput
+    }
+
+    axios.post(`${baseURL}/food`, body)
+        .then((res) => {
+            document.querySelector('#food-input').textContent = res.data;
+            console.log(res.data)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+}
+
+document.querySelector('#food-button').addEventListener('click', createFood);
